@@ -6,8 +6,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public interface MemoRepository extends JpaRepository<Memo, Long> {
-    //findAll ByOrderBy ModifiedAtDesc
-    //수정된 날짜를 Desc(내림차순,최신순으로) 기준으로 정렬
-    List<Memo> findAllByOrderByModifiedAtDesc();
+    //타임라인 서비스가 불러오는 메모 목록의 시간을, 조회 시간으로부터 24시간 이내로 변경
+    List<Memo> findAllByModifiedAtBetweenOrderByModifiedAtDesc(LocalDateTime start, LocalDateTime end);
 
 }
